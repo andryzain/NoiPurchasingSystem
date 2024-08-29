@@ -11,6 +11,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.ViewModels
         public Guid? PrincipalId { get; set; }
         [Required]
         public Guid? KategoriId { get; set; }
+        public Guid? BeratId { get; set; }
         public int JumlahStok { get; set; }
         [Required]
         public Guid? SatuanId { get; set; }

@@ -56,6 +56,17 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-3 col-form-label" asp-for="BeratId">
+                            Berat (*)
+                        </label>
+                        <div class="col-sm-9">
+                            <select asp-for="BeratId" asp-items="@ViewBag.Berat" class="form-control select2bs4" style="width: 100%;" id="berat" disabled>
+                                <option value="" hidden disabled selected>--Pilih Berat--</option>
+                            </select>
+                            <span asp-validation-for="BeratId" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-3 col-form-label" asp-for="JumlahStok">Jumlah Stok (*)</label>
                         <div class="col-sm-9">
                             <input maxlength="100" type="number" asp-for="JumlahStok" class="form-control form-control-border border-width-2" id="jumlahstock" placeholder="Jumlah Stok" readonly disabled>
@@ -198,6 +209,7 @@
                                 document.getElementById("namaProduk").disabled = false;
                                 document.getElementById("principal").disabled = false;
                                 document.getElementById("kategori").disabled = false;
+                                document.getElementById("berat").disabled = false;
                                 document.getElementById("jumlahstock").disabled = false;
                                 document.getElementById("satuan").disabled = false;
                                 document.getElementById("hargabeli").disabled = false;
@@ -218,6 +230,7 @@
                                 document.getElementById("namaProduk").disabled = true;
                                 document.getElementById("principal").disabled = true;
                                 document.getElementById("kategori").disabled = true;
+                                document.getElementById("berat").disabled = true;
                                 document.getElementById("jumlahstock").disabled = true;
                                 document.getElementById("satuan").disabled = true;
                                 document.getElementById("hargabeli").disabled = true;

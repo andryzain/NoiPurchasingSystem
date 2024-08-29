@@ -68,7 +68,7 @@ namespace NoiPurchasingSystem.Areas.Purchasing.Controllers
 
         public JsonResult LoadProduk(Guid Id)
         {
-            var produk = _applicationDbContext.Produks.Include(p => p.Principal).Include(s => s.Satuan).Include(d => d.Diskon).Where(p => p.ProdukId == Id).FirstOrDefault();
+            var produk = _applicationDbContext.Produks.Include(p => p.Principal).Include(s => s.Satuan).Include(d => d.Diskon).Include(b => b.Berat).Where(p => p.ProdukId == Id).FirstOrDefault();
             return new JsonResult(produk);
         }
 
@@ -87,10 +87,9 @@ namespace NoiPurchasingSystem.Areas.Purchasing.Controllers
             _signInManager.IsSignedIn(User);
             var getUser = _penggunaRepository.GetAllUserLogin().Where(u => u.UserName == User.Identity.Name).FirstOrDefault();
 
-            ViewBag.Produk = new SelectList(await _produkRepository.GetProduks(), "ProdukId", "ProductName", SortOrder.Ascending);
-            ViewBag.MetodePembayaranId = new SelectList(await _metodePembayaranRepository.GetMetodePembayarans(), "MetodePembayaranId", "NamaMetodePembayaran", SortOrder.Ascending);
-            ViewBag.Mengetahui = new SelectList(await _penggunaRepository.GetPenggunas(), "PenggunaId", "NamaLengkap", SortOrder.Ascending);
-            ViewBag.Bengkel = new SelectList(await _bengkelRepository.GetBengkels(), "BengkelId", "NamaBengkel", SortOrder.Ascending);
+            ViewBag.Produk = new SelectList(await _produkRepository.GetProduks(), "ProdukId", "NamaProduk", SortOrder.Ascending);
+            ViewBag.MetodePembayaran = new SelectList(await _metodePembayaranRepository.GetMetodePembayarans(), "MetodePembayaranId", "NamaMetodePembayaran", SortOrder.Ascending);            
+            ViewBag.Approve = new SelectList(await _penggunaRepository.GetPenggunas(), "PenggunaId", "NamaLengkap", SortOrder.Ascending);
 
             var PurchaseRequest = new PurchaseRequest()
             {
@@ -187,6 +186,7 @@ namespace NoiPurchasingSystem.Areas.Purchasing.Controllers
                         ProductName = item.ProductName,
                         Principal = item.Principal,
                         Measurement = item.Measurement,
+                        Weight = item.Weight,
                         Qty = item.Qty,
                         Price = item.Price,
                         Discount = item.Discount,
@@ -252,6 +252,7 @@ namespace NoiPurchasingSystem.Areas.Purchasing.Controllers
                     ProductName = item.ProductName,
                     Principal = item.Principal,
                     Measurement = item.Measurement,
+                    Weight = item.Weight,
                     Qty = item.Qty,
                     Price = Math.Truncate(item.Price),
                     Discount = item.Discount,
@@ -421,6 +422,7 @@ namespace NoiPurchasingSystem.Areas.Purchasing.Controllers
                     ProductName = item.ProductName,
                     Principal = item.Principal,
                     Measurement = item.Measurement,
+                    Weight = item.Weight,
                     Qty = item.Qty,
                     Price = item.Price,
                     Discount = item.Discount,

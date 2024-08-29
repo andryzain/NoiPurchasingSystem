@@ -59,6 +59,7 @@ builder.Services.AddScoped<IBengkelRepository, IBengkelRepository>();
 builder.Services.AddScoped<IMekanikRepository, IMekanikRepository>();
 builder.Services.AddScoped<IProdukRepository, IProdukRepository>();
 builder.Services.AddScoped<IBankRepository, IBankRepository>();
+builder.Services.AddScoped<IBeratRepository, IBeratRepository>();
 builder.Services.AddScoped<IItemReimbursmentRepository, IItemReimbursmentRepository>();
 #endregion
 

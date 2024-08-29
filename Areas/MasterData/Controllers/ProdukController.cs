@@ -20,6 +20,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
         private readonly IProdukRepository _produkRepository;
         private readonly IPrincipalRepository _principalRepository;
         private readonly IKategoriRepository _kategoriRepository;
+        private readonly IBeratRepository _beratRepository;
         private readonly ISatuanRepository _satuanRepository;
         private readonly IDiskonRepository _diskonRepository;
         private readonly IPenggunaRepository _penggunaRepository;
@@ -29,6 +30,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
             IProdukRepository produkRepository,
             IPrincipalRepository principalRepository,
             IKategoriRepository kategoriRepository,
+            IBeratRepository beratRepository,
             ISatuanRepository satuanRepository,
             IDiskonRepository diskonRepository,
             IPenggunaRepository penggunaRepository
@@ -38,6 +40,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
             _produkRepository = produkRepository;
             _principalRepository = principalRepository;
             _kategoriRepository = kategoriRepository;
+            _beratRepository = beratRepository;
             _satuanRepository = satuanRepository;
             _diskonRepository = diskonRepository;
             _penggunaRepository = penggunaRepository;
@@ -57,6 +60,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
         {
             ViewBag.Principal = new SelectList(await _principalRepository.GetPrincipals(), "PrincipalId", "NamaPrincipal", SortOrder.Ascending);
             ViewBag.Kategori = new SelectList(await _kategoriRepository.GetKategoris(), "KategoriId", "NamaKategori", SortOrder.Ascending);
+            ViewBag.Berat = new SelectList(await _beratRepository.GetBerats(), "BeratId", "Nilai", SortOrder.Ascending);
             ViewBag.Satuan = new SelectList(await _satuanRepository.GetSatuans(), "SatuanId", "NamaSatuan", SortOrder.Ascending);
             ViewBag.Diskon = new SelectList(await _diskonRepository.GetDiskons(), "DiskonId", "Nilai", SortOrder.Ascending);
 
@@ -83,6 +87,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
         {
             ViewBag.Principal = new SelectList(await _principalRepository.GetPrincipals(), "PrincipalId", "NamaPrincipal", SortOrder.Ascending);
             ViewBag.Kategori = new SelectList(await _kategoriRepository.GetKategoris(), "KategoriId", "NamaKategori", SortOrder.Ascending);
+            ViewBag.Berat = new SelectList(await _beratRepository.GetBerats(), "BeratId", "Nilai", SortOrder.Ascending);
             ViewBag.Satuan = new SelectList(await _satuanRepository.GetSatuans(), "SatuanId", "NamaSatuan", SortOrder.Ascending);
             ViewBag.Diskon = new SelectList(await _diskonRepository.GetDiskons(), "DiskonId", "Nilai", SortOrder.Ascending);
 
@@ -110,6 +115,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
                     NamaProduk = vm.NamaProduk,
                     PrincipalId = vm.PrincipalId,
                     KategoriId = vm.KategoriId,
+                    BeratId = vm.BeratId,
                     JumlahStok = vm.JumlahStok,
                     SatuanId = vm.SatuanId,
                     HargaBeli = vm.HargaBeli,
@@ -126,6 +132,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
                     _produkRepository.Tambah(Produk);
                     ViewBag.Principal = new SelectList(await _principalRepository.GetPrincipals(), "PrincipalId", "NamaPrincipal", SortOrder.Ascending);
                     ViewBag.Kategori = new SelectList(await _kategoriRepository.GetKategoris(), "KategoriId", "NamaKategori", SortOrder.Ascending);
+                    ViewBag.Berat = new SelectList(await _beratRepository.GetBerats(), "BeratId", "Nilai", SortOrder.Ascending);
                     ViewBag.Satuan = new SelectList(await _satuanRepository.GetSatuans(), "SatuanId", "NamaSatuan", SortOrder.Ascending);
                     ViewBag.Diskon = new SelectList(await _diskonRepository.GetDiskons(), "DiskonId", "Nilai", SortOrder.Ascending);
                     TempData["SuccessMessage"] = "Produk " + vm.NamaProduk + " Berhasil Disimpan";
@@ -139,6 +146,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
             }
             ViewBag.Principal = new SelectList(await _principalRepository.GetPrincipals(), "PrincipalId", "NamaPrincipal", SortOrder.Ascending);
             ViewBag.Kategori = new SelectList(await _kategoriRepository.GetKategoris(), "KategoriId", "NamaKategori", SortOrder.Ascending);
+            ViewBag.Berat = new SelectList(await _beratRepository.GetBerats(), "BeratId", "Nilai", SortOrder.Ascending);
             ViewBag.Satuan = new SelectList(await _satuanRepository.GetSatuans(), "SatuanId", "NamaSatuan", SortOrder.Ascending);
             ViewBag.Diskon = new SelectList(await _diskonRepository.GetDiskons(), "DiskonId", "Nilai", SortOrder.Ascending);
             return View();
@@ -151,6 +159,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
         {
             ViewBag.Principal = new SelectList(await _principalRepository.GetPrincipals(), "PrincipalId", "NamaPrincipal", SortOrder.Ascending);
             ViewBag.Kategori = new SelectList(await _kategoriRepository.GetKategoris(), "KategoriId", "NamaKategori", SortOrder.Ascending);
+            ViewBag.Berat = new SelectList(await _beratRepository.GetBerats(), "BeratId", "Nilai", SortOrder.Ascending);
             ViewBag.Satuan = new SelectList(await _satuanRepository.GetSatuans(), "SatuanId", "NamaSatuan", SortOrder.Ascending);
             ViewBag.Diskon = new SelectList(await _diskonRepository.GetDiskons(), "DiskonId", "Nilai", SortOrder.Ascending);
 
@@ -169,6 +178,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
                 NamaProduk = produk.NamaProduk,
                 PrincipalId = produk.PrincipalId,
                 KategoriId = produk.KategoriId,
+                BeratId = produk.BeratId,
                 JumlahStok = produk.JumlahStok,
                 SatuanId = produk.SatuanId,
                 HargaBeli = Math.Truncate(produk.HargaBeli),
@@ -200,6 +210,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
                     Produk.NamaProduk = viewModel.NamaProduk;
                     Produk.PrincipalId = viewModel.PrincipalId;
                     Produk.KategoriId = viewModel.KategoriId;
+                    Produk.BeratId = viewModel.BeratId;
                     Produk.JumlahStok = viewModel.JumlahStok;
                     Produk.SatuanId = viewModel.SatuanId;
                     Produk.HargaBeli = viewModel.HargaBeli;
@@ -219,6 +230,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Controllers
                     TempData["WarningMessage"] = "Produk " + viewModel.NamaProduk + " sudah ada !!!";
                     ViewBag.Principal = new SelectList(await _principalRepository.GetPrincipals(), "PrincipalId", "NamaPrincipal", SortOrder.Ascending);
                     ViewBag.Kategori = new SelectList(await _kategoriRepository.GetKategoris(), "KategoriId", "NamaKategori", SortOrder.Ascending);
+                    ViewBag.Berat = new SelectList(await _beratRepository.GetBerats(), "BeratId", "Nilai", SortOrder.Ascending);
                     ViewBag.Satuan = new SelectList(await _satuanRepository.GetSatuans(), "SatuanId", "NamaSatuan", SortOrder.Ascending);
                     ViewBag.Diskon = new SelectList(await _diskonRepository.GetDiskons(), "DiskonId", "Nilai", SortOrder.Ascending);
                     return View(viewModel);

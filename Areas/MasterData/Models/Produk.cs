@@ -14,6 +14,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Models
         public string NamaProduk { get; set; }        
         public Guid? PrincipalId { get; set; }
         public Guid? KategoriId { get; set; }
+        public Guid? BeratId { get; set; }
         public int JumlahStok { get; set; }
         public Guid? SatuanId { get; set; }
         [DisplayFormat(DataFormatString = "{0:0}", ApplyFormatInEditMode = true)]
@@ -34,5 +35,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Models
         public Satuan? Satuan { get; set; }
         [ForeignKey("DiskonId")]
         public Diskon? Diskon { get; set; }
+        [ForeignKey("BeratId")]
+        public Berat? Berat { get; set; }
     }
 }

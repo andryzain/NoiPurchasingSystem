@@ -43,6 +43,7 @@ namespace NoiPurchasingSystem.Areas.Purchasing.Models
         public string ProductNumber { get; set; }
         public string ProductName { get; set; }
         public string Measurement { get; set; }
+        public string Weight { get; set; }
         public string Principal { get; set; }
         public int Qty { get; set; }
         public decimal Price { get; set; }

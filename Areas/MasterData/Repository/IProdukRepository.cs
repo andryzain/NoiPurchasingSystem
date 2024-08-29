@@ -27,6 +27,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Repository
                 .Include(kate => kate.Kategori)
                 .Include(satu => satu.Satuan)
                 .Include(disk => disk.Diskon)
+                .Include(brt => brt.Berat)
                 .SingleOrDefaultAsync(p => p.ProdukId == Id);
 
             if (produk != null)
@@ -38,6 +39,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Repository
                     NamaProduk = produk.NamaProduk,
                     PrincipalId = produk.PrincipalId,
                     KategoriId = produk.KategoriId,
+                    BeratId = produk.BeratId,
                     JumlahStok = produk.JumlahStok,
                     SatuanId = produk.SatuanId,
                     HargaBeli = produk.HargaBeli,
@@ -65,6 +67,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Repository
                 NamaProduk = produk.NamaProduk,
                 PrincipalId = produk.PrincipalId,
                 KategoriId = produk.KategoriId,
+                BeratId = produk.BeratId,
                 JumlahStok = produk.JumlahStok,
                 SatuanId = produk.SatuanId,
                 HargaBeli = produk.HargaBeli,
@@ -82,6 +85,7 @@ namespace NoiPurchasingSystem.Areas.MasterData.Repository
                 .Include(kate => kate.Kategori)
                 .Include(satu => satu.Satuan)
                 .Include(disk => disk.Diskon)
+                .Include(brt => brt.Berat)
                 .AsNoTracking();
         }
 

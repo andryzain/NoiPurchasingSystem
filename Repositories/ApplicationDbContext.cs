@@ -30,6 +30,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Mekanik> Mekaniks { get; set; }
     public DbSet<Produk> Produks { get; set; }
     public DbSet<Bank> Banks { get; set; }
+    public DbSet<Berat> Berats { get; set; }
     public DbSet<ItemReimbursment> ItemReimbursments { get; set; }
     #endregion
 

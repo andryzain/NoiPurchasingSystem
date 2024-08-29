@@ -1,14 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Daftar Purchase Request";
+    ViewData["Title"] = "Daftar Purchase Order";
     Layout = "~/Views/Shared/_TopNavbarOrder.cshtml";
 }
 
 @using Microsoft.AspNetCore.Identity;
 @using NoiPurchasingSystem.Areas.Purchasing.Models;
-@using NoiPurchasingSystem.Models;
 
 @inject Microsoft.AspNetCore.Identity.SignInManager<ApplicationUser> signInManager
-@model IEnumerable<PurchaseRequest>
+@model IEnumerable<PurchaseOrder>
 
 <!-- Main content -->
 <section class="content">
@@ -22,16 +21,6 @@
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-md-1">
-                                <div class="form-group">
-                                    @if (signInManager.IsSignedIn(User))
-                                    {
-                                        <a class="btn bg-red" asp-action="CreatePurchaseRequest" asp-controller="PurchaseRequest" asp-area="Purchasing">
-                                            <div style="color:#ffffff">Tambah</div>
-                                        </a>
-                                    }
-                                </div>
-                            </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <div class="input-group date" id="dateRange" data-target-input="nearest">
@@ -42,7 +31,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <div class="input-group date" id="reservationdate" data-target-input="nearest">
                                         <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" placeholder="Tanggal Akhir Pencarian..." />
@@ -76,21 +65,23 @@
                                         <th>No</th>
                                         <th>Tanggal Dibuat</th>
                                         <th>Dibuat Oleh</th>
-                                        <th>No. Purchase Request</th>
+                                        <th>No. Pembelian</th>
+                                        <th>Disetujui Oleh</th>
                                         <th>Status</th>
                                         <th>Grand Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var pm in Model)
+                                    @foreach (var pmb in Model)
                                     {
-                                        <tr data-href="@Url.Action("DetailPurchaseRequest", "PurchaseRequest", new {id=pm.PurchaseRequestId})">
+                                        <tr data-href="@Url.Action("DetailPembelian", "Pembelian", new {id=pmb.PurchaseOrderId})">
                                             <th></th>
-                                            <td>@pm.CreateDateTime.ToString("dd MMMM yyyy")</td>
-                                            <td>@pm.ApplicationUser.NamaUser</td>
-                                            <td>@pm.PurchaseRequestNumber</td>
-                                            <td>@pm.Status</td>
-                                            <td>Rp @Math.Truncate(pm.GrandTotal)</td>
+                                            <td>@pmb.CreateDateTime.ToString("dd MMMM yyyy")</td>
+                                            <td>@pmb.ApplicationUser.NamaUser</td>
+                                            <td>@pmb.PurchaseOrderNumber</td>
+                                            <td>@pmb.UserApproval.NamaLengkap</td>
+                                            <td>@pmb.Status</td>
+                                            <td>Rp @Math.Truncate(pmb.GrandTotal)</td>
                                         </tr>
                                     }
                                 </tbody>
