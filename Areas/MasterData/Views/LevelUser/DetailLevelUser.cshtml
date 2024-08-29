@@ -20,7 +20,7 @@
                 <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
             </div>
 
-            <form enctype="multipart/form-data" asp-controller="LevelPengguna" asp-action="DetailLevelPengguna" method="post" class="form-horizontal">
+            <form enctype="multipart/form-data" asp-controller="LevelUser" asp-action="DetailLevelUser" method="post" class="form-horizontal">
                 <div class="card-body">
                     <input hidden asp-for="LevelId" />
                     <div class="form-group row">
@@ -54,8 +54,8 @@
                         <button type="submit" class="btn btn-primary bg-orange float-left fw-bold" id="btnsimpan"><div style="color:#ffffff">Simpan</div></button>&nbsp;
                         <a class="btn btn-info" id="btnubah">Ubah</a>
                         <a class="btn btn-info" id="btnbatalubah">Batal Ubah</a>
-                        <a class="btn btn-danger" asp-action="DeleteLevelPengguna" asp-controller="LevelPengguna" asp-area="MasterData" asp-route-id="@Model.LevelId" id="btnhapus">Hapus</a>
-                        <a class="btn btn-default" asp-action="Index" asp-controller="LevelPengguna" asp-area="MasterData" id="btnbatal">Batal</a>
+                        <a class="btn btn-danger" asp-action="DeleteLevelUser" asp-controller="LevelUser" asp-area="MasterData" asp-route-id="@Model.LevelId" id="btnhapus">Hapus</a>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="LevelUser" asp-area="MasterData" id="btnbatal">Batal</a>
                     </div>
                 </div>
                 <!-- /.end button footer -->

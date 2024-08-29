@@ -13,7 +13,7 @@
     </div>
 
 
-    <form enctype="multipart/form-data" asp-controller="LevelPengguna" asp-action="DeleteLevelPengguna" method="post" class="form-horizontal">
+    <form enctype="multipart/form-data" asp-controller="LevelUser" asp-action="DeleteLevelUser" method="post" class="form-horizontal">
         <div class="card-body">
             <h4>Yakin hapus data ini?</h4>
             <hr />
@@ -41,8 +41,8 @@
         }
 
         <div class="card-footer">
-            @*<form asp-action="DeleteLevelPengguna" method="post">*@
-            <a class="btn btn-default" asp-action="Index" asp-controller="LevelPengguna" asp-area="MasterData">Batal</a>
+            @*<form asp-action="DeleteLevelUser" method="post">*@
+            <a class="btn btn-default" asp-action="Index" asp-controller="LevelUser" asp-area="MasterData">Batal</a>
             <button type="submit" class="btn btn-danger float-left fw-bold"><div style="color:#ffffff">Hapus</div></button>
             @*</form>*@
         </div>
