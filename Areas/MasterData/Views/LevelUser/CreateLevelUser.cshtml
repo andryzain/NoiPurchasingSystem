@@ -20,7 +20,7 @@
                 <h3 class="card-title fw-bold" style="color:#ffffff">@ViewBag.Title</h3>
             </div>
 
-            <form enctype="multipart/form-data" asp-controller="LevelPengguna" asp-action="CreateLevelPengguna" method="post" class="form-horizontal">
+            <form enctype="multipart/form-data" asp-controller="LevelUser" asp-action="CreateLevelUser" method="post" class="form-horizontal">
                 <div class="card-body">
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label" asp-for="KodeLevel">Kode Level *</label>
@@ -51,7 +51,7 @@
                 <div class="card card-orange">
                     <div class="card-body">
                         <button type="submit" class="btn btn-primary bg-red float-left fw-bold"><div style="color:#ffffff">Simpan</div></button>
-                        <a class="btn btn-default" asp-action="Index" asp-controller="LevelPengguna">Batal</a>
+                        <a class="btn btn-default" asp-action="Index" asp-controller="LevelUser">Batal</a>
                     </div>
                 </div>
                 <!-- /.end button footer -->

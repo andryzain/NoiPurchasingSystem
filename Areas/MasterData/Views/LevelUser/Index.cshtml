@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 @if (signInManager.IsSignedIn(User))
                                 {
-                                    <a class="btn bg-red" asp-action="CreateLevelPengguna" asp-controller="LevelPengguna" asp-area="MasterData">
+                                    <a class="btn bg-red" asp-action="CreateLevelUser" asp-controller="LevelUser" asp-area="MasterData">
                                         <div style="color:#ffffff">Tambah</div>
                                     </a>
                                 }
@@ -79,14 +79,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (var LevelPengguna in Model)
+                                @foreach (var LevelUser in Model)
                                 {
-                                    <tr data-href="@Url.Action("DetailLevelPengguna", "LevelPengguna", new {id=LevelPengguna.LevelId})">
+                                    <tr data-href="@Url.Action("DetailLevelUser", "LevelUser", new {id=LevelUser.LevelId})">
                                         <th></th>
-                                        <td>@LevelPengguna.CreateDateTime.ToString("dd MMMM yyyy")</td>
-                                        <td>@LevelPengguna.KodeLevel</td>
-                                        <td>@LevelPengguna.NamaLevel</td>
-                                        <td>@LevelPengguna.Persentase %</td>
+                                        <td>@LevelUser.CreateDateTime.ToString("dd MMMM yyyy")</td>
+                                        <td>@LevelUser.KodeLevel</td>
+                                        <td>@LevelUser.NamaLevel</td>
+                                        <td>@LevelUser.Persentase %</td>
                                     </tr>
                                 }
                             </tbody>
